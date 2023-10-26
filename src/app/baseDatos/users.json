@@ -1,75 +1,24 @@
 {
-    "users": [
-        {
-            "email": "cesar@yoprogramo.com",
-            "password": "$2a$10$89h81TFLoS5IPR2Y5lMKROMuUWx9rclEBKPUnSBHY1az4kbx5SHvK",
-            "nombre": "Cesar",
-            "apellido": "Olivera",
-            "direccion": "529-3651",
-            "telefono": "2262 637774",
-            "id": 1,
-            "confirmPassword": "1234"
-        },
-        {
-            "email": "chechar@gmail.com",
-            "password": "$2a$10$kJMIX20H2L5dGEs4.Ua4luAfxKII0LVzuJlBCy06zC45BAsssItkG",
-            "nombre": "chechar",
-            "apellido": "aaa",
-            "direccion": "aaaa",
-            "telefono": "asaaa",
-            "id": 2
-        },
-        {
-            "email": "cesar_olivera_neco@hotmail.com",
-            "password": "$2a$10$BbrAzKjxnXJoADajQ1MGMusvzVqWb1W6n7KUpS7o6ji.tmKX3hUj.",
-            "nombre": "Cesar Augusto",
-            "apellido": "Olivera",
-            "direccion": "529-3651",
-            "telefono": "123",
-            "id": 3
-        },
-        {
-            "email": "cesar@yoprogramo.com.ar",
-            "password": "$2a$10$oN9v8ZRU3YQ/bTp.X/c58OoZccL4fkIHhCR71JC.O12T7boYT8VAu",
-            "nombre": "Cesar Augusto",
-            "apellido": "Olivera",
-            "direccion": "529-3651",
-            "telefono": "+542262421303",
-            "id": 4
-        }
-    ],
-    "carritos": [
-        {
-            "fechaCompra": "24/10/2023, 17:06:45",
-            "idUsuario": 1,
-            "idBooks": [
-                4,
-                3,
-                2
-            ],
-            "total": 1872,
-            "id": 1
-        },
-        {
-            "fechaCompra": "24/10/2023, 17:54:11",
-            "idUsuario": 1,
-            "idBooks": [
-                2,
-                6,
-                5
-            ],
-            "total": 1248,
-            "id": 2
-        },
-        {
-            "fechaCompra": "24/10/2023, 18:01:39",
-            "idUsuario": 1,
-            "idBooks": [
-                3,
-                2
-            ],
-            "total": 1712,
-            "id": 3
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "username": "cesar@utn.com",
+      "password": "1234"
+    },
+    {
+      "id": 2,
+      "username": "cesar_olivera_neco@hotmail.com",
+      "password": "12345678"
+    },
+    {
+      "id": 3,
+      "username": "",
+      "password": ""
+    },
+    {
+      "id": 4,
+      "username": "cintia_lorena@hotmail.com",
+      "password": "1234"
+    }
+  ]
 }

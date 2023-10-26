@@ -1,0 +1,52 @@
+.store {
+  display: flex;
+  flex-direction: row;
+}
+
+.section-container-books {
+      border: 1px solid lightgray;
+      border-radius: 15px;
+      margin: 5% 1%;
+      padding: 2em;
+      width: 70%;
+}
+
+.section-container-shop {
+      border: 1px solid lightgray;
+      border-radius: 15px;
+      margin: 5% 1%;
+      padding: 2em;
+      width: 30%;
+  }
+
+.products, .shopping-cart {
+  align-items: right;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 2em;
+  margin: 0 0 10px;
+
+}
+
+.card {
+    max-width: 400px;
+    margin-bottom: 18px;
+}
+
+
+
+
+hr{
+  border: .1rem solid rgb(228, 224, 224);
+}
+
+.columna{
+    width:50%;
+    float:left;
+    justify-content: right;
+}
+
+.carrito-card{
+  padding: .5rem;
+}
