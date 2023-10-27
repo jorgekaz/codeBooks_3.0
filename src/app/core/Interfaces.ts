@@ -1,5 +1,11 @@
+import { Book } from "./Modelos";
+
 export interface IUser{
-  username: string | null;
+  nombre: string | null;
+  apellido: string | null;
+  direccion: string | null;
+  telefono: string | null;
+  email: string | null;
   password: string | null;
 }
 
@@ -15,11 +21,9 @@ export interface IBook{
   year: number | null;
 }
 
-export interface IProducto{
-  id: number | null;
-  title: string | null;
-  price: number | null;
-  category: string | null;
-  description: string | null;
-  image: string | null;
+export interface ICarrito{
+  idUsuario: number | null;
+  idBooks: number[] | null;
+  total: number | null;
+  fechaCompra: string | null;
 }

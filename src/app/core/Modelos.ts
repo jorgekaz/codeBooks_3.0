@@ -1,12 +1,19 @@
-import { IBook, IUser } from "./Interfaces";
+import { IBook, ICarrito, IUser } from "./Interfaces";
 
 export class User implements IUser {
-  id: number | null = null;
-  username: string | null;
+  nombre: string | null;
+  apellido: string | null;
+  direccion: string | null;
+  telefono: string | null;
+  email: string | null;
   password: string | null;
 
-  constructor(username:string, password:string){
-    this.username = username;
+  constructor(nombre: string, apellido: string, direccion: string, telefono: string, email: string, password: string) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.direccion = direccion;
+    this.telefono = telefono;
+    this.email = email;
     this.password = password;
   }
 
@@ -36,3 +43,16 @@ export class Book implements IBook{
   }
 }
 
+export class Carrito implements ICarrito {
+  idUsuario: number | null;
+  idBooks: number[] | null;
+  total: number | null;
+  fechaCompra: string | null = null;
+
+  constructor(idUsuario: number, idBooks: number[], total: number, fechaCompra: string) {
+    this.idUsuario = idUsuario;
+    this.idBooks = idBooks;
+    this.total = total;
+    this.fechaCompra = fechaCompra;
+  }
+}

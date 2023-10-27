@@ -21,7 +21,7 @@ export class ApiService {
   }
 
   public postUser(user: User): Observable<any> {
-    console.log("Usuario: " + user.username);
+    console.log("Usuario: " + user.nombre);
     console.log("Password: " + user.password);
     let json = JSON.stringify(user);
     console.log(json);
