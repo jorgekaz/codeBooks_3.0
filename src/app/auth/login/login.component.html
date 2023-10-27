@@ -1,1 +1,27 @@
+<app-navbar></app-navbar>
 
+<div>
+  <form class="formulario"  [formGroup]="formulario" (ngSubmit)="login()">
+    <h1>Ingresar al sistema</h1>
+    <mat-form-field [style.width.px]=400>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email"  />
+      <mat-error *ngIf="this.formulario.get('email')?.errors?.['required']">
+        (El email no puede quedar vacío)
+      </mat-error>
+      <mat-error *ngIf="this.formulario.get('email')?.errors?.['email']">
+        (El email no es valido)
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field [style.width.px]=400>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" placeholder="Password" value="" />
+      <mat-error *ngIf="this.formulario.get('password')?.errors?.['required']">
+        (El password no puede quedar vacío)
+      </mat-error>
+    </mat-form-field>
+    <div class="products">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!formulario.valid">Ingresar</button>
+    </div>
+  </form>
+</div>
