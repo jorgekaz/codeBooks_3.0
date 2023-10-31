@@ -3,7 +3,6 @@ import { ApiService } from './api.service';
 import { User } from '../Modelos';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,15 +19,6 @@ export class UsersService {
     })
   }
 
-  getUserById(id: number): Promise<User>{
-    return new Promise((res, rej) => {
-      this.apiService.getObservableUser(id).subscribe({
-        next: data => res(data),
-        error: error => rej(error)
-      })
-    })
-  }
-
   setUser(user:User): Promise<any>{
     return new Promise((res, rej) => {
       this.apiService.postUser(user).subscribe({
@@ -38,18 +28,11 @@ export class UsersService {
     })
   }
 
+  // JSON-Server-Auth
+
   userLoguin(usuario: string, password: string): Promise<any> {
     return new Promise((resp, rej) => {
       this.apiService.userLoguin(usuario, password).subscribe({
-        next: data => resp(data),
-        error: error => rej(error)
-      })
-    })
-  }
-
-  updateUser(datosFormulario: string, idUsuario: number){
-    return new Promise((resp, rej) => {
-      this.apiService.updateUser(datosFormulario, idUsuario).subscribe({
         next: data => resp(data),
         error: error => rej(error)
       })

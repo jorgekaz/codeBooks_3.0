@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,13 +11,13 @@ export class NavbarComponent {
   @Output() mensaje: EventEmitter<string>;
   title = 'CodeBook';
 
-  constructor(private router: Router, private cookies: CookieService){
+  constructor(private router: Router){
     this.mensaje = new EventEmitter();
   }
 
   home(){
-    if (this.cookies.check('X-Auth-Token')){
-      this.router.navigateByUrl("/?id=" + this.cookies.get('X-Auth-Token'))
+    if (localStorage.getItem('accessToken')){
+      this.router.navigateByUrl("/?id=" + localStorage.getItem('accessToken'))
     } else{
       this.router.navigateByUrl("/");
     }

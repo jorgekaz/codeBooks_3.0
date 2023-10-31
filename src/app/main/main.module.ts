@@ -10,11 +10,10 @@ import { MatIconModule } from '@angular/material/icon'
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
-
-import 'hammerjs';
-//import { NavbarComponent } from '../shared/navbar/navbar/navbar.component';
-
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatRadioModule} from '@angular/material/radio';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,11 @@ import 'hammerjs';
     MatButtonModule,
     MatToolbarModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    FormsModule
   ]
 })
 export class MainModule { }
