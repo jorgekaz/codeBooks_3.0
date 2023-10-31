@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Book, User } from '../Modelos';
+import { Book, Carrito, User } from '../Modelos';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +34,12 @@ export class ApiService {
     return this.http.get<any[]>(`${this.urlBooks}/books?q=${search}`);
   }
 
+  public guardarCarrito(idUsuario: number, cart: number[], costoTotal: number): Observable<any>{
+    const fechaActual = new Date();
+    const carrito = new Carrito(idUsuario, cart, costoTotal, fechaActual);
+    const json = JSON.stringify(carrito);
+    console.log(json);
+    return this.http.post(`${this.urlUsers}/carritos/`, json,{headers: {'Content-Type': 'application/json'}} );
+
+  }
 }

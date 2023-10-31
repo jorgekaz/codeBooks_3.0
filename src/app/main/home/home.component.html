@@ -14,14 +14,19 @@
             <mat-card-subtitle>{{ book.autor }}</mat-card-subtitle>
             <mat-card-subtitle>Precio: ${{ book.precio }}</mat-card-subtitle>
           </mat-card-title-group>
+          <button mat-mini-fab color="warn" (click)="eliminarLibro(book.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </mat-card-header>
       </mat-card>
     </diV>
     <mat-list role="list">
       <mat-list-item role="listitem">Precio total: ${{costoTotal}}</mat-list-item>
     </mat-list>
+    <div class="products">
+      <button type="button" mat-raised-button color="primary" (click)="validateBuy()">Finalizar Compra</button>
+    </div>
   </section>
-  <button type="button" mat-raised-button color="primary" (click)="validateBuy()">Finalizar Compra</button>
 </div>
 <!-- Seccion de libros disponibles-->
 <div *ngIf="!itemsToBuy" cdkDropListGroup class="store">
@@ -39,12 +44,12 @@
           <mat-label>texto</mat-label>
           <input matInput placeholder="texto" value="" id="search">
         </mat-form-field>
-        <button mat-icon-button color="primary" (click)="search()">
+        <button type="button" mat-icon-button color="primary" (click)="search()">
           <mat-icon>search</mat-icon>
         </button>
       </form>
     </div>
-    <!--Opciones de busqueda name="opciones" [(ngModel)]="operacionSeleccionada" -->
+    <!--Opciones de busqueda -->
     <div class="search-opt">
       <mat-radio-group color="primary" name="search-option" [(ngModel)] = "opcionElegida">
         <mat-radio-button name="search-option" value="titulo" checked="true" class="search-btn">Titulo </mat-radio-button>
@@ -64,7 +69,7 @@
             <mat-card-subtitle>Año: {{book.year}}</mat-card-subtitle>
             <mat-card-subtitle>Precio: ${{ book.precio }}</mat-card-subtitle>
             <mat-card-subtitle><a [href] = "book.link" target="_blank" rel="noopener noreferrer">+Info</a></mat-card-subtitle>
-            <img mat-card-image [src]="'../../../assets/' +book.imagen" [alt]="book.titulo" width="25%">
+            <img mat-card-image [src]="'../../../assets/' +book.imagen" [alt]="book.titulo" [title]="book.titulo" width="25%">
           </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>
@@ -110,7 +115,7 @@
             <mat-card-subtitle>Idioma: {{book.idioma}}</mat-card-subtitle>
             <mat-card-subtitle>Año: {{book.year}}</mat-card-subtitle>
             <mat-card-subtitle>Precio: ${{ book.precio }}</mat-card-subtitle>
-            <img mat-card-image [src]="'../../../assets/' +book.imagen" [alt]="book.titulo" width="25%">
+            <img mat-card-image [src]="'../../../assets/' +book.imagen" [alt]="book.titulo" [title]="book.titulo" width="25%">
           </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>

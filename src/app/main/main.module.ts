@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthModule } from '../auth/auth.module';
 
-
 import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './home/home.component';
 import { MatIconModule } from '@angular/material/icon'
@@ -18,7 +17,6 @@ import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     HomeComponent,
-  //  NavbarComponent
   ],
   imports: [
     CommonModule,

@@ -8,6 +8,27 @@
       "direccion": "529-3651",
       "telefono": "2262637774",
       "id": 1
+    },
+    {
+      "email": "jorgekaz@hotmail.com",
+      "password": "$2a$10$tIR6iij0BFCWhB/7.r3IoehqR8aZliJXSpLraOmZJYL5M08Z4JG7W",
+      "nombre": "Jorge",
+      "apellido": "Karp",
+      "direccion": "514458",
+      "telefono": "2262648748",
+      "id": 2
+    }
+  ],
+  "carritos": [
+    {
+      "fechaCompra": "2023-10-31T22:18:28.942Z",
+      "idUsuario": 2,
+      "idBooks": [
+        4,
+        6
+      ],
+      "total": 448,
+      "id": 1
     }
   ]
 }

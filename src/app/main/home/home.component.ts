@@ -2,6 +2,9 @@ import { ProductService } from './../../core/api-service/product.service';
 import { Component, OnInit } from '@angular/core';
 import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Book } from '../../core/Modelos';
+import 'hammerjs';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 
 
@@ -28,7 +31,7 @@ export class HomeComponent implements OnInit {
   opcionElegida: string = "titulo";
 
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private cookies: CookieService, private router: Router) {}
 
   ngOnInit(): void {
       this.buscarProductos();
@@ -78,7 +81,6 @@ export class HomeComponent implements OnInit {
         this.inicio = 0;
         this.fin = 10;
       }
-
     });
   }
 
@@ -117,9 +119,10 @@ export class HomeComponent implements OnInit {
   drop(event: any) {
     this.itemsToBuy = false;
     if (event.previousContainer === event.container) {
+      // Arrastro y suelto en mismo contenedor
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-
     } else {
+      // Arrastro de un contenedor a otro
       transferArrayItem(event.previousContainer.data,
                         event.container.data,
                         event.previousIndex + this.inicio,
@@ -170,8 +173,30 @@ export class HomeComponent implements OnInit {
   validateBuy(){
     if(this.userLogued()){
       this.message = "Compra realizada con exito";
+      const idUsuario = localStorage.getItem('idUsuario');
+      console.log(idUsuario);
+      // persistir carrito
+      // Pasar a otro array los id de los libros
+      const idBooks: number[] = this.cart.map(book => book.id != null ? book.id : 0);
+      this.productService.guardarCarrito(Number(idUsuario), idBooks, this.costoTotal).then((data) => {
+        console.log(data);
+      });
       this.cart = [];
       this.costoTotal = 0;
+      this.itemsToBuy = false;
+    }
+  }
+
+  eliminarLibro(id: number | null){
+    const libroaEliminar = this.cart.filter(book => book.id == id);
+    if (libroaEliminar != null){
+      const index = this.cart.indexOf(libroaEliminar[0]);
+      this.cart.splice(index, 1);
+      this.costoTotal -= libroaEliminar[0].precio != null ? libroaEliminar[0].precio : 0;
+    }
+    if (this.cart.length == 0){
+      // Carrito Vacio
+      this.itemsToBuy = false;
     }
   }
 }
