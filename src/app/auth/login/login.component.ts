@@ -2,7 +2,7 @@ import { UsersService } from 'src/app/core/api-service/users.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/Modelos';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('idUsuario');
     }
-
   }
 
   login(){
@@ -45,7 +44,8 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl("/?id=" + data.accessToken);
     },
     (error) => {
-       this.snackBar.open(error.error, "",{
+      console.log(error.error);
+       this.snackBar.open("Error de usuario o contraseña", "",{
           duration: 2000
         });
       });

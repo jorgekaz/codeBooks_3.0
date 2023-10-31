@@ -11,11 +11,19 @@ export class ProductService {
 
   getProducts(): Promise<Book[]>{
     return new Promise((res, rej) =>{
-      this.apiService.getObservableProducts().subscribe({
+      this.apiService.getCarrito('').subscribe({
          next: data => res(data),
          error: error => rej(error)
       })
     })
   }
 
+  searchProducts(search: string): Promise<Book[]>{
+    return new Promise((res, rej) => {
+      this.apiService.getCarrito(search).subscribe({
+        next: data => res(data),
+        error: error => rej(error)
+      })
+    })
+  }
 }

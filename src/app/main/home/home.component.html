@@ -32,8 +32,29 @@
     (cdkDropListDropped)="drop($event)">
     <h1>Libros</h1>
     <hr>
+    <!--Barra de busqueda -->
+    <div class="search-opt">
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>texto</mat-label>
+          <input matInput placeholder="texto" value="" id="search">
+        </mat-form-field>
+        <button mat-icon-button color="primary" (click)="search()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </form>
+    </div>
+    <!--Opciones de busqueda name="opciones" [(ngModel)]="operacionSeleccionada" -->
+    <div class="search-opt">
+      <mat-radio-group color="primary" name="search-option" [(ngModel)] = "opcionElegida">
+        <mat-radio-button name="search-option" value="titulo" checked="true" class="search-btn">Titulo </mat-radio-button>
+        <mat-radio-button name="search-option" value="autor" class="search-btn">Autor </mat-radio-button>
+        <mat-radio-button name="search-option" value="pais" class="search-btn">Pais </mat-radio-button>
+        <mat-radio-button name="search-option" value="idioma" class="search-btn">Idioma</mat-radio-button>
+      </mat-radio-group>
+    </div>
     <div class="products">
-      <mat-card class="card" *ngFor="let book of books" cdkDrag>
+      <mat-card class="card" *ngFor="let book of books.slice(inicio, fin)" cdkDrag>
         <mat-card-header>
           <mat-card-title-group>
             <mat-card-title>{{ book.titulo }}</mat-card-title>
@@ -43,7 +64,7 @@
             <mat-card-subtitle>Año: {{book.year}}</mat-card-subtitle>
             <mat-card-subtitle>Precio: ${{ book.precio }}</mat-card-subtitle>
             <mat-card-subtitle><a [href] = "book.link" target="_blank" rel="noopener noreferrer">+Info</a></mat-card-subtitle>
-            <img mat-card-image [src]="'../../../assets/' + book.imagen" title="asdqwe" [alt]="book.titulo" width="25%">
+            <img mat-card-image [src]="'../../../assets/' +book.imagen" [alt]="book.titulo" width="25%">
           </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>
@@ -51,7 +72,12 @@
         </mat-card-content>
       </mat-card>
     </div>
+    <div class="products">
+      <button disabled="{{!prevPage}}" type="button" mat-raised-button color="primary" (click)="showPrevPage()">Anterior</button>
+      <button disabled="{{!nextPage}}" type="button" mat-raised-button color="primary" (click)="showNextPage()">Siguiente</button>
+    </div>
   </section>
+  <!-- Seccion carrito-->
   <section
     class="section-container-shop"
     cdkDropList
@@ -60,16 +86,20 @@
     *ngIf="logued"
   >
     <h1>Carrito</h1>
-    <section class="section-container-books">
-      <div class="shopping-cart">
+    <hr>
+    <section>
+      <div class="shopping-cart" *ngIf="cart.length > 0">
         <button type="button" mat-raised-button color="primary" (click)="buy()">Comprar</button>
-        <button *ngIf="cart.length > 0" type="button" mat-raised-button color="warn" (click)="vaciar()" class="boton-derecha">
+        <button type="button" mat-raised-button color="warn" (click)="vaciar()" class="boton-derecha">
           Vaciar
         </button>
       </div>
     </section>
-
-
+    <div class="carrito" *ngIf="cart.length == 0">
+      <h3>Arrastre aqui sus libros</h3>
+      <br>
+      <mat-icon class="icon-size">add-circle-outline</mat-icon>
+    </div>
     <div class="shopping-cart">
       <mat-card class="card" *ngFor="let book of cart" cdkDrag>
         <mat-card-header>
@@ -80,7 +110,7 @@
             <mat-card-subtitle>Idioma: {{book.idioma}}</mat-card-subtitle>
             <mat-card-subtitle>Año: {{book.year}}</mat-card-subtitle>
             <mat-card-subtitle>Precio: ${{ book.precio }}</mat-card-subtitle>
-            <img mat-card-image [src]="'../../../assets/' + book.imagen" title="asd" [alt]="book.titulo" width="25%">
+            <img mat-card-image [src]="'../../../assets/' +book.imagen" [alt]="book.titulo" width="25%">
           </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>
@@ -91,4 +121,3 @@
 
   </section>
 </div>
-

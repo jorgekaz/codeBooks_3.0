@@ -39,7 +39,7 @@
     box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
     cursor: pointer;
   }
-  
+
   .formulario {
     display: flex;
     flex-direction: column;
@@ -51,11 +51,11 @@
     border-radius: 0.5rem;
     box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
   }
-  
+
   .mat-form-field{
     width:50vw;
   }
-  
+
   .products{
     align-items: right;
     display: flex;
@@ -65,4 +65,3 @@
     margin: 0 0 10px;
     width: 30%;
   }
-  

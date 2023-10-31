@@ -1,24 +1,13 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "cesar@utn.com",
-      "password": "1234"
-    },
-    {
-      "id": 2,
-      "username": "cesar_olivera_neco@hotmail.com",
-      "password": "12345678"
-    },
-    {
-      "id": 3,
-      "username": "",
-      "password": ""
-    },
-    {
-      "id": 4,
-      "username": "cintia_lorena@hotmail.com",
-      "password": "1234"
+      "email": "cesar@utn.com",
+      "password": "$2a$10$dUtXUJR43Kghj6VLtq.Vj.tFrZm109StvBjcHLqSdtpoRoFnHiFni",
+      "nombre": "Cesar",
+      "apellido": "Olivera",
+      "direccion": "529-3651",
+      "telefono": "2262637774",
+      "id": 1
     }
   ]
 }
