@@ -10,6 +10,8 @@ export class ApiService {
   private urlBooks="http://localhost:3000";
   private urlUsers="http://localhost:3004";
 
+
+
   constructor(private http: HttpClient) { }
 
   public getObservableProducts(): Observable<Book[]>{
@@ -18,6 +20,10 @@ export class ApiService {
 
   public getObservableUsers(): Observable<User[]>{
     return this.http.get<User[]>(`${this.urlUsers}/users`);
+  }
+
+  public getObservableUser(id: number): Observable<User>{
+    return this.http.get<User>(`${this.urlUsers}/users/${id}`);
   }
 
   public postUser(user: User): Observable<any> {
@@ -41,5 +47,12 @@ export class ApiService {
     console.log(json);
     return this.http.post(`${this.urlUsers}/carritos/`, json,{headers: {'Content-Type': 'application/json'}} );
 
+  }
+
+  public updateUser(datosFormulario: string, idUsuario: number): Observable<any>{
+
+    const json = JSON.stringify(datosFormulario);
+    console.log(json);
+    return this.http.patch(`${this.urlUsers}/users/${idUsuario}`, json, {headers: {'Content-Type': 'application/json'}} );
   }
 }

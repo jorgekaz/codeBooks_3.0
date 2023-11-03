@@ -1,7 +1,7 @@
 <!--Barra de Navegacion -->
-<app-navbar (mensaje)="recibirMensaje( $event )"></app-navbar>
+<app-navbar (mensaje)="recibirMensaje( $event )" [isLogued]="logued" [userName]="userName" [idUsuario]="idUsuario"></app-navbar>
 
-<!-- Compra -->
+<!-- Detalle de la Compra -->
 <div *ngIf="itemsToBuy" class="message">
   <section class="section-container-books">
     <h3>{{ message }}</h3>
@@ -25,6 +25,7 @@
     </mat-list>
     <div class="products">
       <button type="button" mat-raised-button color="primary" (click)="validateBuy()">Finalizar Compra</button>
+      <button mat-raised-button color="warn" type="submit" (click)="vaciar()">Cancel</button>
     </div>
   </section>
 </div>
@@ -69,7 +70,7 @@
             <mat-card-subtitle>Año: {{book.year}}</mat-card-subtitle>
             <mat-card-subtitle>Precio: ${{ book.precio }}</mat-card-subtitle>
             <mat-card-subtitle><a [href] = "book.link" target="_blank" rel="noopener noreferrer">+Info</a></mat-card-subtitle>
-            <img mat-card-image [src]="'../../../assets/' +book.imagen" [alt]="book.titulo" [title]="book.titulo" width="25%">
+            <img mat-card-image [src]="'../../../assets/' +book.imagen" [alt]="book.titulo" width="25%">
           </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>
@@ -95,7 +96,7 @@
     <section>
       <div class="shopping-cart" *ngIf="cart.length > 0">
         <button type="button" mat-raised-button color="primary" (click)="buy()">Comprar</button>
-        <button type="button" mat-raised-button color="warn" (click)="vaciar()" class="boton-derecha">
+        <button type="button" mat-raised-button color="warn" (click)="vaciar()">
           Vaciar
         </button>
       </div>
@@ -115,7 +116,7 @@
             <mat-card-subtitle>Idioma: {{book.idioma}}</mat-card-subtitle>
             <mat-card-subtitle>Año: {{book.year}}</mat-card-subtitle>
             <mat-card-subtitle>Precio: ${{ book.precio }}</mat-card-subtitle>
-            <img mat-card-image [src]="'../../../assets/' +book.imagen" [alt]="book.titulo" [title]="book.titulo" width="25%">
+            <img mat-card-image [src]="'../../../assets/' +book.imagen" [alt]="book.titulo" width="25%">
           </mat-card-title-group>
         </mat-card-header>
         <mat-card-content>
