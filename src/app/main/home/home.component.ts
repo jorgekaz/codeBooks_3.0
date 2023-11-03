@@ -2,17 +2,14 @@ import { ProductService } from './../../core/api-service/product.service';
 import { Component, OnInit } from '@angular/core';
 import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Book } from '../../core/Modelos';
-import 'hammerjs';
-import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
-
-
+import { CommonService } from 'src/app/core/api-service/common.services';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
 
   public books: Book[] = [];
@@ -30,8 +27,12 @@ export class HomeComponent implements OnInit {
   nextPage: boolean = false;
   opcionElegida: string = "titulo";
 
+  userName: string | null = '';
+  idUsuario: number | null = 0;
 
-  constructor(private productService: ProductService, private cookies: CookieService, private router: Router) {}
+
+
+  constructor(private productService: ProductService, private commonService: CommonService) {}
 
   ngOnInit(): void {
       this.buscarProductos();
@@ -49,6 +50,12 @@ export class HomeComponent implements OnInit {
   recibirMensaje(mensaje:string){
     if (mensaje == "false")
       this.itemsToBuy = false;
+    if (mensaje == "logout"){
+      this.itemsToBuy = false;
+      this.logued = false;
+      this.userName = '';
+      this.idUsuario = 0;
+    }
   }
 
   showPrevPage(){
@@ -81,6 +88,7 @@ export class HomeComponent implements OnInit {
         this.inicio = 0;
         this.fin = 10;
       }
+
     });
   }
 
@@ -154,18 +162,13 @@ export class HomeComponent implements OnInit {
 
 
   userLogued(): boolean{
-    if (localStorage.getItem('accessToken')){
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = urlParams.get('id');
-      const token = localStorage.getItem('accessToken');
-      if (id === token){
-        this.logued = true;
-        return true
-      } else {
-        localStorage.removeItem('accessToken');
-      }
-    }else {
-      console.log("no logueado");
+    if (this.commonService.userLogued()){
+      this.logued = true;
+      this.userName = localStorage.getItem('userName');
+      this.idUsuario = Number(localStorage.getItem('idUsuario'));
+      return true;
+    } else {
+      this.logued = false;
     }
     return false;
   }
@@ -198,5 +201,10 @@ export class HomeComponent implements OnInit {
       // Carrito Vacio
       this.itemsToBuy = false;
     }
+  }
+
+  volverInicio(){
+    this.itemsToBuy = false;
+    this.cart = [];
   }
 }

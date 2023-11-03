@@ -11,12 +11,13 @@
     },
     {
       "email": "jorgekaz@hotmail.com",
-      "password": "$2a$10$tIR6iij0BFCWhB/7.r3IoehqR8aZliJXSpLraOmZJYL5M08Z4JG7W",
+      "password": "$2a$10$WkHR.VyJXYyWZDWXoFsw.erR.Nw68Ft/lIF14ln6nG9hMGdyZCRl6",
       "nombre": "Jorge",
       "apellido": "Karp",
       "direccion": "514458",
       "telefono": "2262648748",
-      "id": 2
+      "id": 2,
+      "confirmPassword": "123456"
     }
   ],
   "carritos": [
@@ -29,6 +30,17 @@
       ],
       "total": 448,
       "id": 1
+    },
+    {
+      "fechaCompra": "2023-11-03T21:18:56.982Z",
+      "idUsuario": 2,
+      "idBooks": [
+        3,
+        4,
+        2
+      ],
+      "total": 1872,
+      "id": 2
     }
   ]
 }
