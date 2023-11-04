@@ -47,9 +47,9 @@ export class Carrito implements ICarrito {
   idUsuario: number | null;
   idBooks: number[] | null;
   total: number | null;
-  fechaCompra: Date | null = null;
+  fechaCompra: string | null = null;
 
-  constructor(idUsuario: number, idBooks: number[], total: number, fechaCompra: Date) {
+  constructor(idUsuario: number, idBooks: number[], total: number, fechaCompra: string) {
     this.idUsuario = idUsuario;
     this.idBooks = idBooks;
     this.total = total;

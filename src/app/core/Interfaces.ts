@@ -25,5 +25,5 @@ export interface ICarrito{
   idUsuario: number | null;
   idBooks: number[] | null;
   total: number | null;
-  fechaCompra: Date | null;
+  fechaCompra: string | null;
 }
