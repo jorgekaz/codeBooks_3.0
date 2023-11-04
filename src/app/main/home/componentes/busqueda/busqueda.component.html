@@ -1,0 +1,21 @@
+    <!--Barra de busqueda -->
+    <div class="search-opt">
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Busqueda por titulo, autor, pais o idioma</mat-label>
+          <input matInput placeholder="" value="" id="search">
+        </mat-form-field>
+        <button mat-icon-button color="primary" (click)="search()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </form>
+    </div>
+    <!--Opciones de busqueda -->
+    <div class="search-opt">
+      <mat-radio-group color="primary" name="search-option" [(ngModel)] = "opcionElegida">
+        <mat-radio-button name="search-option" value="titulo" checked="true" class="search-btn">Titulo </mat-radio-button>
+        <mat-radio-button name="search-option" value="autor" class="search-btn">Autor </mat-radio-button>
+        <mat-radio-button name="search-option" value="pais" class="search-btn">Pais </mat-radio-button>
+        <mat-radio-button name="search-option" value="idioma" class="search-btn">Idioma</mat-radio-button>
+      </mat-radio-group>
+    </div>

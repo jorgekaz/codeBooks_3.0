@@ -2,7 +2,12 @@ import { ProductService } from './../../core/api-service/product.service';
 import { Component, OnInit } from '@angular/core';
 import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Book } from '../../core/Modelos';
+import 'hammerjs';
 import { CommonService } from 'src/app/core/api-service/common.services';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+
+
 
 @Component({
   selector: 'app-home',
@@ -32,7 +37,7 @@ export class HomeComponent implements OnInit {
 
 
 
-  constructor(private productService: ProductService, private commonService: CommonService) {}
+  constructor(private productService: ProductService, private commonService: CommonService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
       this.buscarProductos();
@@ -48,7 +53,7 @@ export class HomeComponent implements OnInit {
   }
 
   recibirMensaje(mensaje:string){
-    if (mensaje == "false")
+    if (mensaje == "goHome")
       this.itemsToBuy = false;
     if (mensaje == "logout"){
       this.itemsToBuy = false;
@@ -56,7 +61,28 @@ export class HomeComponent implements OnInit {
       this.userName = '';
       this.idUsuario = 0;
     }
+    if (mensaje == "carritoVacio"){
+      this.itemsToBuy = false;
+      this.cart = [];
+      this.costoTotal = 0;
+    }
   }
+
+  recibirLibrosFiltrados(libros: Book[]){
+    this.books = libros;
+    this.contarLibros();
+    this.contarPaginas();
+    if (this.ultimaPagina > 1){
+      this.nextPage = true;
+      this.inicio = 0;
+      this.fin = 10;
+    } else {
+      this.nextPage = false;
+      this.inicio = 0;
+      this.fin = this.cantidadLibros;
+    }
+  }
+
 
   showPrevPage(){
     this.nextPage = true;
@@ -90,38 +116,6 @@ export class HomeComponent implements OnInit {
       }
 
     });
-  }
-
-  search(){
-    let search = (<HTMLInputElement>document.getElementById("search")).value;
-    this.productService.searchProducts(search).then((data) => {
-      this.books = data.filter((book) => {
-        if (this.opcionElegida == "titulo"){
-          return book.titulo?.toLocaleLowerCase().includes(search.toLocaleLowerCase());
-        }
-        if (this.opcionElegida == "autor"){
-          return book.autor?.toLocaleLowerCase().includes(search.toLocaleLowerCase());
-        }
-        if (this.opcionElegida == "pais"){
-          return book.pais?.toLocaleLowerCase().includes(search.toLocaleLowerCase());
-        }
-        if (this.opcionElegida == "idioma"){
-          return book.idioma?.toLocaleLowerCase().includes(search.toLocaleLowerCase());
-        }
-        return null;
-      });
-      this.contarLibros();
-      this.contarPaginas();
-      if (this.ultimaPagina > 1){
-        this.nextPage = true;
-        this.inicio = 0;
-        this.fin = 10;
-      } else {
-        this.nextPage = false;
-        this.inicio = 0;
-        this.fin = this.cantidadLibros;
-      }
-    })
   }
 
   drop(event: any) {
@@ -173,38 +167,8 @@ export class HomeComponent implements OnInit {
     return false;
   }
 
-  validateBuy(){
-    if(this.userLogued()){
-      this.message = "Compra realizada con exito";
-      const idUsuario = localStorage.getItem('idUsuario');
-      console.log(idUsuario);
-      // persistir carrito
-      // Pasar a otro array los id de los libros
-      const idBooks: number[] = this.cart.map(book => book.id != null ? book.id : 0);
-      this.productService.guardarCarrito(Number(idUsuario), idBooks, this.costoTotal).then((data) => {
-        console.log(data);
-      });
-      this.cart = [];
-      this.costoTotal = 0;
-      this.itemsToBuy = false;
-    }
-  }
 
-  eliminarLibro(id: number | null){
-    const libroaEliminar = this.cart.filter(book => book.id == id);
-    if (libroaEliminar != null){
-      const index = this.cart.indexOf(libroaEliminar[0]);
-      this.cart.splice(index, 1);
-      this.costoTotal -= libroaEliminar[0].precio != null ? libroaEliminar[0].precio : 0;
-    }
-    if (this.cart.length == 0){
-      // Carrito Vacio
-      this.itemsToBuy = false;
-    }
-  }
 
-  volverInicio(){
-    this.itemsToBuy = false;
-    this.cart = [];
-  }
+
+
 }

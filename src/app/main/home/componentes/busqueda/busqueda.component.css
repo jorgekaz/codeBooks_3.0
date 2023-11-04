@@ -1,0 +1,25 @@
+.search-btn {
+  padding: 2rem;
+}
+
+hr{
+  border: .1rem solid rgb(228, 224, 224);
+}
+
+.search-opt {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+}
+
+.example-full-width {
+  width: 100%;
+}

@@ -2,12 +2,13 @@
   "users": [
     {
       "email": "cesar@utn.com",
-      "password": "$2a$10$dUtXUJR43Kghj6VLtq.Vj.tFrZm109StvBjcHLqSdtpoRoFnHiFni",
+      "password": "$2a$10$2SZX30BLdUHFHBmmhwUV8.Y.LCTeE0AZEaWEtKqfva8cFWxiG/6qO",
       "nombre": "Cesar",
       "apellido": "Olivera",
       "direccion": "529-3651",
       "telefono": "2262637774",
-      "id": 1
+      "id": 1,
+      "confirmPassword": "12345"
     },
     {
       "email": "jorgekaz@hotmail.com",
@@ -71,6 +72,27 @@
       ],
       "total": 2000,
       "id": 4
+    },
+    {
+      "fechaCompra": "4/11/2023, 8:37:30",
+      "idUsuario": 1,
+      "idBooks": [
+        4,
+        3,
+        2
+      ],
+      "total": 1872,
+      "id": 5
+    },
+    {
+      "fechaCompra": "4/11/2023, 10:05:18",
+      "idUsuario": 1,
+      "idBooks": [
+        3,
+        2
+      ],
+      "total": 1712,
+      "id": 6
     }
   ]
 }

@@ -1,34 +1,8 @@
 <!--Barra de Navegacion -->
 <app-navbar (mensaje)="recibirMensaje( $event )" [isLogued]="logued" [userName]="userName" [idUsuario]="idUsuario"></app-navbar>
 
-<!-- Detalle de la Compra -->
-<div *ngIf="itemsToBuy" class="message">
-  <section class="section-container-books">
-    <h3>{{ message }}</h3>
-    <hr>
-    <diV *ngFor="let book of cart" class="carrito-card">
-      <mat-card class="example-card" >
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title>{{ book.titulo }}</mat-card-title>
-            <mat-card-subtitle>{{ book.autor }}</mat-card-subtitle>
-            <mat-card-subtitle>Precio: ${{ book.precio }}</mat-card-subtitle>
-          </mat-card-title-group>
-          <button mat-mini-fab color="warn" (click)="eliminarLibro(book.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-card-header>
-      </mat-card>
-    </diV>
-    <mat-list role="list">
-      <mat-list-item role="listitem">Precio total: ${{costoTotal}}</mat-list-item>
-    </mat-list>
-    <div class="products">
-      <button type="button" mat-raised-button color="primary" (click)="validateBuy()">Finalizar Compra</button>
-      <button mat-raised-button color="warn" type="submit" (click)="vaciar()">Cancel</button>
-    </div>
-  </section>
-</div>
+<app-detalle-compra *ngIf="itemsToBuy" [message]="message" [cart]="cart" [costoTotal]="costoTotal"></app-detalle-compra>
+
 <!-- Seccion de libros disponibles-->
 <div *ngIf="!itemsToBuy" cdkDropListGroup class="store">
   <section
@@ -38,27 +12,7 @@
     (cdkDropListDropped)="drop($event)">
     <h1>Libros</h1>
     <hr>
-    <!--Barra de busqueda -->
-    <div class="search-opt">
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label>texto</mat-label>
-          <input matInput placeholder="texto" value="" id="search">
-        </mat-form-field>
-        <button type="button" mat-icon-button color="primary" (click)="search()">
-          <mat-icon>search</mat-icon>
-        </button>
-      </form>
-    </div>
-    <!--Opciones de busqueda -->
-    <div class="search-opt">
-      <mat-radio-group color="primary" name="search-option" [(ngModel)] = "opcionElegida">
-        <mat-radio-button name="search-option" value="titulo" checked="true" class="search-btn">Titulo </mat-radio-button>
-        <mat-radio-button name="search-option" value="autor" class="search-btn">Autor </mat-radio-button>
-        <mat-radio-button name="search-option" value="pais" class="search-btn">Pais </mat-radio-button>
-        <mat-radio-button name="search-option" value="idioma" class="search-btn">Idioma</mat-radio-button>
-      </mat-radio-group>
-    </div>
+    <app-busqueda (booksFiltered)="recibirLibrosFiltrados( $event )" [books]="books"></app-busqueda>
     <div class="products">
       <mat-card class="card" *ngFor="let book of books.slice(inicio, fin)" cdkDrag>
         <mat-card-header>
@@ -91,7 +45,7 @@
     (cdkDropListDropped)="drop($event)"
     *ngIf="logued"
   >
-    <h1>Carrito</h1>
+    <h1>Carrito de Compra</h1>
     <hr>
     <section>
       <div class="shopping-cart" *ngIf="cart.length > 0">

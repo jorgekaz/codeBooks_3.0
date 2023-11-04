@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book, Carrito, User } from '../Modelos';
 
@@ -49,7 +49,6 @@ export class ApiService {
     const fechaActual = new Date().toLocaleString();
     const carrito = new Carrito(idUsuario, cart, costoTotal, fechaActual);
     const json = JSON.stringify(carrito);
-    console.log(json);
     return this.http.post(`${this.urlUsers}/carritos/`, json,{headers: {'Content-Type': 'application/json'}} );
 
   }
@@ -57,7 +56,6 @@ export class ApiService {
   public updateUser(datosFormulario: string, idUsuario: number): Observable<any>{
 
     const json = JSON.stringify(datosFormulario);
-    console.log(json);
     return this.http.patch(`${this.urlUsers}/users/${idUsuario}`, json, {headers: {'Content-Type': 'application/json'}} );
   }
 
