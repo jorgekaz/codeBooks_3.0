@@ -1,82 +1,49 @@
+.section-container-books {
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  margin: 5% 1%;
+  padding: 2em;
+  width: 70%;
+}
+
 .store {
-  display: flex;
-  flex-direction: row;
+display: flex;
+flex-direction: row;
 }
 
 .carrito {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.section-container-books {
-      border: 1px solid lightgray;
-      border-radius: 15px;
-      margin: 5% 1%;
-      padding: 2em;
-      width: 70%;
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 
 .section-container-shop {
-      border: 1px solid lightgray;
-      border-radius: 15px;
-      margin: 5% 1%;
-      padding: 2em;
-      width: 30%;
-  }
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  margin: 5% 1%;
+  padding: 2em;
+  width: 30%;
+}
 
 .products, .shopping-cart {
-  align-items: right;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 2em;
-  margin: 0 0 10px;
-
+align-items: right;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+padding: 2em;
+margin: 0 0 10px;
 }
 
 .card {
-    max-width: 400px;
-    margin-bottom: 18px;
+max-width: 400px;
+margin-bottom: 18px;
 }
 
 .icon-size{
-  transform: scale(6);
-  color:rgb(105, 105, 105)
-}
-
-.search-opt {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.search-btn {
-  padding: 2rem;
+transform: scale(6);
+color:rgb(105, 105, 105)
 }
 
 hr{
-  border: .1rem solid rgb(228, 224, 224);
-}
-
-.columna{
-    width:50%;
-    float:left;
-    justify-content: right;
-}
-
-.carrito-card{
-  padding: .5rem;
-}
-
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-  display: flex;
-}
-
-.example-full-width {
-  width: 100%;
+border: .1rem solid rgb(228, 224, 224);
 }

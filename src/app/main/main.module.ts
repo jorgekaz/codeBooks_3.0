@@ -17,14 +17,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
 
-
-import 'hammerjs';
+import { BusquedaComponent } from './home/componentes/busqueda/busqueda.component';
+import { DetalleCompraComponent } from './home/componentes/detalle-compra/detalle-compra.component';
 
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    BusquedaComponent,
+    DetalleCompraComponent
   ],
   imports: [
     CommonModule,
