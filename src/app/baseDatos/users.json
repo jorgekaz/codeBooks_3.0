@@ -18,6 +18,16 @@
       "telefono": "2262648748",
       "id": 2,
       "confirmPassword": "123456"
+    },
+    {
+      "email": "juang@live.com.ar",
+      "password": "$2a$10$4EmVqDnawJlp5UJsctoZOuvchHsJp9HQhLhUqDB0uwqQl2h8GLLI2",
+      "nombre": "Juan",
+      "apellido": "Genova",
+      "direccion": "Av. siempre viva 1234",
+      "telefono": "02262475384",
+      "id": 3,
+      "confirmPassword": "123123"
     }
   ],
   "carritos": [
@@ -41,6 +51,26 @@
       ],
       "total": 1872,
       "id": 2
+    },
+    {
+      "fechaCompra": "2023-11-04T00:09:49.058Z",
+      "idUsuario": 3,
+      "idBooks": [
+        2
+      ],
+      "total": 784,
+      "id": 3
+    },
+    {
+      "fechaCompra": "3/11/2023, 21:50:38",
+      "idUsuario": 3,
+      "idBooks": [
+        2,
+        6,
+        3
+      ],
+      "total": 2000,
+      "id": 4
     }
   ]
 }

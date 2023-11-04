@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book, Carrito, User } from '../Modelos';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,6 +27,10 @@ export class ApiService {
     return this.http.get<User>(`${this.urlUsers}/users/${id}`);
   }
 
+  public getObservableBook(id: number): Observable<Book>{
+    return this.http.get<Book>(`${this.urlBooks}/books/${id}`);
+  }
+
   public postUser(user: User): Observable<any> {
     let json = JSON.stringify(user);
     return this.http.post(`${this.urlUsers}/register`, json, {headers: {'Content-Type': 'application/json'}});
@@ -41,7 +46,7 @@ export class ApiService {
   }
 
   public guardarCarrito(idUsuario: number, cart: number[], costoTotal: number): Observable<any>{
-    const fechaActual = new Date();
+    const fechaActual = new Date().toLocaleString();
     const carrito = new Carrito(idUsuario, cart, costoTotal, fechaActual);
     const json = JSON.stringify(carrito);
     console.log(json);
@@ -54,5 +59,9 @@ export class ApiService {
     const json = JSON.stringify(datosFormulario);
     console.log(json);
     return this.http.patch(`${this.urlUsers}/users/${idUsuario}`, json, {headers: {'Content-Type': 'application/json'}} );
+  }
+
+  public getObservableCarritos(id: number): Observable<Carrito[]>{
+      return this.http.get<Carrito[]>(`${this.urlUsers}/carritos?idUsuario=${id}`);
   }
 }
