@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Book } from 'src/app/core/Modelos';
 import { ProductService } from 'src/app/core/api-service/product.service';
 
@@ -7,9 +7,11 @@ import { ProductService } from 'src/app/core/api-service/product.service';
   templateUrl: './busqueda.component.html',
   styleUrls: ['./busqueda.component.css']
 })
-export class BusquedaComponent {
+export class BusquedaComponent implements OnInit{
 
     opcionElegida: string = 'titulo';
+    hasFilteredResults: boolean = false;
+    originalBooks: Book[] = [];
 
     @Output() booksFiltered: EventEmitter<Book[]>;
     @Input() books: Book[] = [];
@@ -17,6 +19,13 @@ export class BusquedaComponent {
     constructor(private productService: ProductService) {
       this.booksFiltered = new EventEmitter();
     }
+
+  ngOnInit(): void {
+    this.productService.getProducts().then((data) => {
+      this.books = data;
+      this.originalBooks = data;
+    });
+  }
 
     search(){
       let search = (<HTMLInputElement>document.getElementById("search")).value;
@@ -37,7 +46,14 @@ export class BusquedaComponent {
           return null;
         });
         this.booksFiltered.emit(this.books);
+        this.hasFilteredResults = true;
+      });
+    }
 
-      })
+    clearFilters() {
+      this.books = this.originalBooks; // Restaura la lista original de libros
+      this.booksFiltered.emit(this.books);
+      this.hasFilteredResults = false; // Oculta el botón de limpieza
+      (<HTMLInputElement>document.getElementById("search")).value = ''; // Limpia el campo de búsqueda
     }
 }
