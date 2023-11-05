@@ -3,9 +3,9 @@
       <form class="example-form">
         <mat-form-field class="example-full-width">
           <mat-label>Busqueda por titulo, autor, pais o idioma</mat-label>
-          <input matInput placeholder="" value="" id="search">
+          <input matInput placeholder="Busqueda por titulo, autor, pais o idioma" value="" id="search">
         </mat-form-field>
-        <button mat-icon-button color="primary" (click)="search()">
+        <button type="button" mat-icon-button color="primary" (click)="search()">
           <mat-icon>search</mat-icon>
         </button>
       </form>
@@ -18,4 +18,8 @@
         <mat-radio-button name="search-option" value="pais" class="search-btn">Pais </mat-radio-button>
         <mat-radio-button name="search-option" value="idioma" class="search-btn">Idioma</mat-radio-button>
       </mat-radio-group>
+    </div>
+
+    <div class="search-opt" *ngIf="hasFilteredResults">
+      <button mat-raised-button color="warn" (click)="clearFilters()">Limpiar Filtros</button>
     </div>
