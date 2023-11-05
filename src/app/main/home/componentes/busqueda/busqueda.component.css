@@ -23,3 +23,10 @@ hr{
 .example-full-width {
   width: 100%;
 }
+
+.round-button {
+  width: 32px; /* Ajusta el ancho a tu preferencia */
+  height: 32px; /* Ajusta el alto a tu preferencia */
+  border-radius: 50%; /* Esto hace que el botón sea redondo */
+  margin-left: 10px; /* Ajusta el margen izquierdo a tu preferencia para separar los botones */
+}

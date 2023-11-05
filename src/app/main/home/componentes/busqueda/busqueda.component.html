@@ -8,8 +8,13 @@
         <button type="button" mat-icon-button color="primary" (click)="search()">
           <mat-icon>search</mat-icon>
         </button>
+        <button type="button" mat-icon-button color="warn" (click)="clearFilters()" class="round-button" [hidden]="!hasFilteredResults">
+          <mat-icon>clear</mat-icon>
+        </button>
       </form>
     </div>
+    
+    
     <!--Opciones de busqueda -->
     <div class="search-opt">
       <mat-radio-group color="primary" name="search-option" [(ngModel)] = "opcionElegida">
@@ -18,8 +23,4 @@
         <mat-radio-button name="search-option" value="pais" class="search-btn">Pais </mat-radio-button>
         <mat-radio-button name="search-option" value="idioma" class="search-btn">Idioma</mat-radio-button>
       </mat-radio-group>
-    </div>
-
-    <div class="search-opt" *ngIf="hasFilteredResults">
-      <button mat-raised-button color="warn" (click)="clearFilters()">Limpiar Filtros</button>
     </div>
