@@ -16,7 +16,8 @@ export class UserProfileComponent implements OnInit {
   logued: boolean = false;
   userName: string | null = '';
   idUsuario: number | null = 0;
-
+  hide: boolean = true;
+  hide2: boolean = true;
 
 
   formulario: FormGroup;

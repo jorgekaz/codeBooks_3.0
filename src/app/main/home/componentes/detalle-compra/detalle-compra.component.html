@@ -11,7 +11,13 @@
             <mat-card-subtitle>{{ book.autor }}</mat-card-subtitle>
             <mat-card-subtitle>Precio: ${{ book.precio }}</mat-card-subtitle>
           </mat-card-title-group>
-          <button mat-mini-fab color="warn" (click)="eliminarLibro(book.id)">
+          <button mat-mini-fab
+                  color="warn"
+                  (click)="eliminarLibro(book.id)"
+                  tool
+                  matTooltip="Quitar"
+                  matTooltipHideDelay="100"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-header>

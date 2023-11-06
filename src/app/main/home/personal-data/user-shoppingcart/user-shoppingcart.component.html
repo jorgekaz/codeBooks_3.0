@@ -13,7 +13,13 @@
             <mat-card-subtitle>Fecha Compra: {{ carrito.fechaCompra}}</mat-card-subtitle>
             <mat-card-subtitle>Precio Total: ${{ carrito.total }}</mat-card-subtitle>
           </mat-card-title-group>
-          <button mat-mini-fab color="primary" (click)="detalleCarrito(carrito.idBooks!)">
+          <button mat-mini-fab
+                  color="primary"
+                  (click)="detalleCarrito(carrito.idBooks!)"
+                  tool
+                  matTooltip="Detalle Compra"
+                  matTooltipHideDelay="100"
+          >
             <mat-icon>view_list</mat-icon>
           </button>
         </mat-card-header>

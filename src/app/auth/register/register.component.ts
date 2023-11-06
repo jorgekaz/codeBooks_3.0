@@ -14,6 +14,8 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  hide: boolean = true;
+  hide2: boolean = true;
 
   formulario: FormGroup;
 
