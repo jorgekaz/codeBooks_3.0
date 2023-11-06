@@ -45,7 +45,7 @@ export class DetalleCompraComponent {
       this.productService.guardarCarrito(Number(idUsuario), idBooks, this.costoTotal).then((data) => {
         // Mensaje ok
         this.snackBar.open("Compra realizada satisfactoriamente.", "",{
-          duration: 2000
+          duration: 3000
         });
       }).catch((error) => {
         this.snackBar.open(error.error, "",{

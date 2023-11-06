@@ -48,7 +48,7 @@ export class RegisterComponent {
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('idUsuario', data.user.id);
       this.snackBar.open("Usuario registrado en forma satisfactoria.", "",{
-        duration: 2000
+        duration: 3000
       });
       this.router.navigateByUrl("/?id=" + data.accessToken);
 

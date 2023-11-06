@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     (error) => {
       console.log(error.error);
        this.snackBar.open("Error de usuario o contraseña", "",{
-          duration: 2000
+          duration: 3000
         });
       });
 

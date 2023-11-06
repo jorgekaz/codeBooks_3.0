@@ -5,16 +5,30 @@
           <mat-label>Busqueda por titulo, autor, pais o idioma</mat-label>
           <input matInput placeholder="Busqueda por titulo, autor, pais o idioma" value="" id="search">
         </mat-form-field>
-        <button type="button" mat-icon-button color="primary" (click)="search()">
+        <button type="button"
+                mat-icon-button
+                color="primary"
+                (click)="search()"
+                tool
+                matTooltip="Buscar"
+                matTooltipHideDelay="100"
+        >
           <mat-icon>search</mat-icon>
         </button>
-        <button type="button" mat-icon-button color="warn" (click)="clearFilters()" class="round-button" [hidden]="!hasFilteredResults">
+        <button type="button"
+                mat-icon-button color="warn"
+                (click)="clearFilters()"
+                [hidden]="!hasFilteredResults"
+                tool
+                matTooltip="Cancelar Busqueda"
+                matTooltipHideDelay="100"
+          >
           <mat-icon>clear</mat-icon>
         </button>
       </form>
     </div>
-    
-    
+
+
     <!--Opciones de busqueda -->
     <div class="search-opt">
       <mat-radio-group color="primary" name="search-option" [(ngModel)] = "opcionElegida">
