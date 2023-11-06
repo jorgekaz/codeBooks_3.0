@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   email: string = '';
   password: string = '';
+  hide: boolean = true;
 
   usuarios: User[] = [];
 
