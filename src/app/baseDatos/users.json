@@ -112,6 +112,28 @@
       ],
       "total": 993,
       "id": 8
+    },
+    {
+      "fechaCompra": "7/11/2023, 7:59:13",
+      "idUsuario": 1,
+      "idBooks": [
+        4,
+        3,
+        2
+      ],
+      "total": 1872,
+      "id": 9
+    },
+    {
+      "fechaCompra": "7/11/2023, 11:52:06",
+      "idUsuario": 1,
+      "idBooks": [
+        4,
+        3,
+        2
+      ],
+      "total": 1872,
+      "id": 10
     }
   ]
 }

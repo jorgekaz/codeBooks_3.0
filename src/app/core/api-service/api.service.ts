@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book, Carrito, User } from '../Modelos';
+import { environments } from 'src/environments/environments';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private urlBooks="http://localhost:3000";
-  private urlUsers="http://localhost:3004";
 
-
+  private urlBooks= environments.urlBooks;
+  private urlUsers= environments.urlUsers;
 
   constructor(private http: HttpClient) { }
 
