@@ -32,7 +32,21 @@
     justify-content: space-around;
     padding: 2em;
     margin: 0 0 10px;
+  }
+  .detalle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
   
+  .detalle-container h1 {
+    margin: 0;
+    font-size: 35px;
+  }
+  
+  .detalle-container .shopping-cart-button {
+    margin-left: auto;
   }
   
   .card {

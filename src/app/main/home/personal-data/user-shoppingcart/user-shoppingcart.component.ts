@@ -66,4 +66,8 @@ export class UserShoppingcartComponent implements OnInit{
   volver(){
     this.commonService.volverInicio();
   }
+  ocultarDetalle(){
+    this.detalle = false;
+  }
+
 }
