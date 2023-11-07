@@ -6,20 +6,15 @@
     <h3>Historial de Compras</h3>
     <hr>
     <diV *ngFor="let carrito of carritos" class="carrito-card">
-      <mat-card class="example-card" >
+      <mat-card class="example-card">
         <mat-card-header>
           <mat-card-title-group>
             <mat-card-title>Cantidad libros: {{ carrito.idBooks!.length }}</mat-card-title>
             <mat-card-subtitle>Fecha Compra: {{ carrito.fechaCompra}}</mat-card-subtitle>
             <mat-card-subtitle>Precio Total: ${{ carrito.total }}</mat-card-subtitle>
           </mat-card-title-group>
-          <button mat-mini-fab
-                  color="primary"
-                  (click)="detalleCarrito(carrito.idBooks!)"
-                  tool
-                  matTooltip="Detalle Compra"
-                  matTooltipHideDelay="100"
-          >
+          <button mat-mini-fab color="primary" (click)="detalleCarrito(carrito.idBooks!)" tool
+            matTooltip="Detalle Compra" matTooltipHideDelay="100">
             <mat-icon>view_list</mat-icon>
           </button>
         </mat-card-header>
@@ -33,9 +28,15 @@
 
   <!-- Seccion carrito-->
   <section class="section-container-shop" *ngIf="detalle">
-    <h1>Detalle</h1>
+    <section class="detalle-container">
+      <h1>Detalle</h1>
+      <div class="shopping-cart-button">
+        <button mat-mini-fab color="warn" tool matTooltip="Ocultar Detalle" matTooltipHideDelay="100" (click)="ocultarDetalle()">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </section>
     <hr>
-
     <div class="shopping-cart">
       <mat-card class="card" *ngFor="let book of books" cdkDrag>
         <mat-card-header>
