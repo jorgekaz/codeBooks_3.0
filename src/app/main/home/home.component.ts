@@ -5,6 +5,7 @@ import { Book } from '../../core/Modelos';
 import 'hammerjs';
 import { CommonService } from 'src/app/core/api-service/common.services';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/core/api-service/auth.service';
 
 
 
@@ -22,7 +23,6 @@ export class HomeComponent implements OnInit {
 
   itemsToBuy: boolean = false;
   logued: boolean = false;
-  message: string = '';
   costoTotal: number = 0;
   cantidadLibros: number = 0;
   ultimaPagina: number = 0;
@@ -37,7 +37,9 @@ export class HomeComponent implements OnInit {
 
 
 
-  constructor(private productService: ProductService, private commonService: CommonService, private snackBar: MatSnackBar) {}
+  constructor(private productService: ProductService,
+              private commonService: CommonService,
+              private authService: AuthService) {}
 
   ngOnInit(): void {
       this.buscarProductos();
@@ -53,8 +55,9 @@ export class HomeComponent implements OnInit {
   }
 
   recibirMensaje(mensaje:string){
-    if (mensaje == "goHome")
+    if (mensaje == "goHome"){
       this.itemsToBuy = false;
+    }
     if (mensaje == "logout"){
       this.itemsToBuy = false;
       this.logued = false;
@@ -82,7 +85,6 @@ export class HomeComponent implements OnInit {
       this.fin = this.cantidadLibros;
     }
   }
-
 
   showPrevPage(){
     this.nextPage = true;
@@ -139,8 +141,6 @@ export class HomeComponent implements OnInit {
   buy(){
     if(this.cart.length > 0){
       this.itemsToBuy = true;
-      this.message = "Libros en el Carrito";
-
     }else{
       this.itemsToBuy = false;
     }
@@ -150,25 +150,17 @@ export class HomeComponent implements OnInit {
     this.itemsToBuy = false;
     this.cart = [];
     this.buscarProductos();
-    (<HTMLInputElement>document.getElementById("search")).value = "";
-
   }
 
-
   userLogued(): boolean{
-    if (this.commonService.userLogued()){
+    if (this.commonService.isLogued()){
       this.logued = true;
-      this.userName = localStorage.getItem('userName');
-      this.idUsuario = Number(localStorage.getItem('idUsuario'));
+      this.userName = this.authService.getUser()?.nombre + " " + this.authService.getUser()?.apellido;
+      this.idUsuario = this.authService.getUser()?.id;
       return true;
-    } else {
+    }else {
       this.logued = false;
     }
     return false;
   }
-
-
-
-
-
 }

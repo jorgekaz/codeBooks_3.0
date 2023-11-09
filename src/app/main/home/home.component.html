@@ -1,7 +1,7 @@
 <!--Barra de Navegacion -->
 <app-navbar (mensaje)="recibirMensaje( $event )" [isLogued]="logued" [userName]="userName" [idUsuario]="idUsuario"></app-navbar>
 
-<app-detalle-compra *ngIf="itemsToBuy" [message]="message" [cart]="cart" [costoTotal]="costoTotal"></app-detalle-compra>
+<app-detalle-compra *ngIf="itemsToBuy" [cart]="cart" [costoTotal]="costoTotal"></app-detalle-compra>
 
 <!-- Seccion de libros disponibles-->
 <div *ngIf="!itemsToBuy" cdkDropListGroup class="store">

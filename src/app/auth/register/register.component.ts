@@ -4,13 +4,16 @@ import { User } from 'src/app/core/Modelos';
 import { UsersService } from 'src/app/core/api-service/users.service';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/core/api-service/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent {
+
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
@@ -19,7 +22,11 @@ export class RegisterComponent {
 
   formulario: FormGroup;
 
-  constructor(private formEdit: FormBuilder, private userService: UsersService, private router: Router, private snackBar: MatSnackBar) {
+  constructor(private formEdit: FormBuilder,
+              private userService: UsersService,
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private authService: AuthService) {
     this.formulario = this.formEdit.group({
       nombre: ['', [Validators.required]],
       apellido: ['', [Validators.required]],
@@ -35,34 +42,24 @@ export class RegisterComponent {
   }
 
   register() {
-    const user = new User(
-      this.formulario.get('nombre')?.value,
-      this.formulario.get('apellido')?.value,
-      this.formulario.get('direccion')?.value,
-      this.formulario.get('telefono')?.value,
-      this.formulario.get('email')?.value,
-      this.formulario.get('password')?.value
-
-    );
+    const user = new User(this.formulario.value);
 
     this.userService.setUser(user).then((data) => {
-      console.log(data);
-      localStorage.setItem('accessToken', data.accessToken);
-      localStorage.setItem('idUsuario', data.user.id);
+      this.authService.setToken(data.accessToken);
+      this.authService.setUser(data.user);
       this.snackBar.open("Usuario registrado en forma satisfactoria.", "",{
         duration: 3000
       });
-      this.router.navigateByUrl("/?id=" + data.accessToken);
+      this.router.navigate(['/']);
 
     }).catch((error) => {
-      this.snackBar.open(error.error, "",{
+      this.snackBar.open("Hubo un error al registrarse", "",{
         duration: 2000
       });
     });
-
-
   }
-  // Validacion que devulve isValid
+
+  // Validacion de passwords iguales
   passwordsIguales() : ValidatorFn {
     return () => {
 

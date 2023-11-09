@@ -1,7 +1,7 @@
 <!-- Detalle de la Compra -->
 <div class="message">
   <section class="section-container-books">
-    <h3>{{ message }}</h3>
+    <h3>Libros en el carrito</h3>
     <hr>
     <diV *ngFor="let book of cart" class="carrito-card">
       <mat-card class="example-card" >
@@ -27,7 +27,7 @@
       <mat-list-item role="listitem">Precio total: ${{costoTotal}}</mat-list-item>
     </mat-list>
     <div class="products">
-      <button type="button" mat-raised-button color="primary" (click)="validateBuy()">Finalizar Compra</button>
+      <button type="button" mat-raised-button color="primary" (click)="validateBuy(cart)">Finalizar Compra</button>
       <button mat-raised-button color="warn" type="submit" (click)="vaciar()">Volver</button>
     </div>
   </section>

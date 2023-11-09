@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Book, Carrito } from 'src/app/core/Modelos';
+import { AuthService } from 'src/app/core/api-service/auth.service';
 import { CommonService } from 'src/app/core/api-service/common.services';
 import { ProductService } from 'src/app/core/api-service/product.service';
 import { ShoppingcartService } from 'src/app/core/api-service/shoppingcart.service';
@@ -21,25 +23,32 @@ export class UserShoppingcartComponent implements OnInit{
   carritos: Carrito[] = [];
   books: Book[] = [];
 
-  constructor(private commonService: CommonService, private router: Router, private cartService: ShoppingcartService, private bookService: ProductService){}
+  constructor(private commonService: CommonService,
+              private router: Router,
+              private cartService: ShoppingcartService,
+              private bookService: ProductService,
+              private snackBar: MatSnackBar,
+              private authService: AuthService){}
 
   ngOnInit(): void {
     if (this.userLogued()){
-      console.log("adentro entrando al perfil");
       this.obtenerShoppingCartUsuario();
     } else {
-      this.router.navigateByUrl("/");
+      this.router.navigate(['/']);
     }
   }
 
   userLogued(): boolean{
-    if (this.commonService.userLogued()){
+    if (this.commonService.isLogued()){
       this.logued = true;
-      this.userName = localStorage.getItem('userName');
-      this.idUsuario = Number(localStorage.getItem('idUsuario'));
+      this.userName = this.authService.getUser().nombre + " " + this.authService.getUser().apellido;
+      this.idUsuario = this.authService.getUser().id;
       return true;
     } else {
       this.logued = false;
+      this.snackBar.open("Por favor ingrese con su cuenta o registrese.", "", {
+        duration: 2000
+      });
     }
     return false;
   }
@@ -47,7 +56,6 @@ export class UserShoppingcartComponent implements OnInit{
   obtenerShoppingCartUsuario(){
     const id: number = Number(this.idUsuario);
     this.cartService.getCartByUserId(id).then((data) =>{
-      console.log(data);
       this.carritos = data;
     })
   }
@@ -60,7 +68,6 @@ export class UserShoppingcartComponent implements OnInit{
         this.books.push(data);
       })
     });
-    console.log(this.books);
   }
 
   volver(){
