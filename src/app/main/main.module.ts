@@ -15,10 +15,13 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { BusquedaComponent } from './home/componentes/busqueda/busqueda.component';
 import { DetalleCompraComponent } from './home/componentes/detalle-compra/detalle-compra.component';
+import { ConfirmaCompraComponent } from './home/componentes/confirma-compra/confirma-compra.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 
@@ -26,7 +29,8 @@ import { DetalleCompraComponent } from './home/componentes/detalle-compra/detall
   declarations: [
     HomeComponent,
     BusquedaComponent,
-    DetalleCompraComponent
+    DetalleCompraComponent,
+    ConfirmaCompraComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +47,10 @@ import { DetalleCompraComponent } from './home/componentes/detalle-compra/detall
     MatRadioModule,
     FormsModule,
     PersonalDataModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatStepperModule,
+    ReactiveFormsModule
   ]
 })
 export class MainModule { }

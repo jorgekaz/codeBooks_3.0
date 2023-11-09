@@ -4,6 +4,7 @@ import { CommonService } from 'src/app/core/api-service/common.services';
 import { UsersService } from 'src/app/core/api-service/users.service';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/core/api-service/auth.service';
 
 
 @Component({
@@ -22,9 +23,12 @@ export class UserProfileComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private formEdit: FormBuilder, private commonService: CommonService,
-    private router: Router, private userService: UsersService,
-    private snackBar: MatSnackBar) {
+  constructor(private formEdit: FormBuilder,
+              private commonService: CommonService,
+              private router: Router,
+              private userService: UsersService,
+              private snackBar: MatSnackBar,
+              private authService: AuthService) {
     this.formulario = this.formEdit.group({
       nombre: ['', [Validators.required]],
       apellido: ['', [Validators.required]],
@@ -36,29 +40,27 @@ export class UserProfileComponent implements OnInit {
     });
     // Validacion que devuelve si es valido o no el formulario
     this.formulario.get('confirmPassword')?.setValidators([Validators.required, this.passwordsIguales()]);
-
-
-
   }
 
   ngOnInit(): void {
     if (this.userLogued()) {
-      console.log("adentro entrando al perfil");
       this.obtenerUsuario();
     } else {
-      this.router.navigateByUrl("/");
+      this.router.navigate(['/']);
     }
   }
 
   userLogued(): boolean {
-    if (this.commonService.userLogued()) {
+    if (this.commonService.isLogued()) {
       this.logued = true;
-      this.userName = localStorage.getItem('userName');
-      this.idUsuario = Number(localStorage.getItem('idUsuario'));
+      this.userName = this.authService.getUser().nombre + " " + this.authService.getUser().apellido;
+      this.idUsuario = this.authService.getUser().id;
       return true;
     } else {
       this.logued = false;
-      console.log("queriendo entrar al perfil por afuera");
+      this.snackBar.open("Por favor ingrese con su cuenta o registrese.", "", {
+        duration: 2000
+      });
     }
     return false;
   }
@@ -95,7 +97,7 @@ export class UserProfileComponent implements OnInit {
         this.snackBar.open("Datos Modificados Satisfactoriamente", "", {
           duration: 2000
         });
-        this.router.navigateByUrl('/?id=' + localStorage.getItem('accessToken'));
+        this.router.navigate(['/']);
       })
     }
   }

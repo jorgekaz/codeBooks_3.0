@@ -3,6 +3,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Book } from 'src/app/core/Modelos';
 import { HomeComponent } from '../../home.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmaCompraComponent } from '../confirma-compra/confirma-compra.component';
 
 @Component({
   selector: 'app-detalle-compra',
@@ -11,13 +13,13 @@ import { HomeComponent } from '../../home.component';
 })
 export class DetalleCompraComponent {
 
-  @Input() message: string = '';
   @Input() cart: Book[] = [];
   @Input() costoTotal: number = 0;
 
   @Output() mensaje: EventEmitter<string>;
 
-  constructor(private productService: ProductService, private snackBar: MatSnackBar, private homeComponent: HomeComponent){
+  constructor(private homeComponent: HomeComponent,
+              private dialog: MatDialog){
     this.mensaje = new EventEmitter();
   }
 
@@ -34,26 +36,15 @@ export class DetalleCompraComponent {
     }
   }
 
-  validateBuy(){
-    if(this.homeComponent.userLogued()){
-      this.message = "Compra realizada con exito";
-      const idUsuario = localStorage.getItem('idUsuario');
-      console.log(idUsuario);
-      // persistir carrito
-      // Pasar a otro array los id de los libros
-      const idBooks: number[] = this.cart.map(book => book.id != null ? book.id : 0);
-      this.productService.guardarCarrito(Number(idUsuario), idBooks, this.costoTotal).then((data) => {
-        // Mensaje ok
-        this.snackBar.open("Compra realizada satisfactoriamente.", "",{
-          duration: 3000
-        });
-      }).catch((error) => {
-        this.snackBar.open(error.error, "",{
-          duration: 2000
-        });
-      });
-      this.homeComponent.vaciar();
-    }
+  validateBuy(cart: Book[]){
+
+    const dialogRef = this.dialog.open(ConfirmaCompraComponent, { data: cart, height: '500px', width: '700px' });
+    console.log("SALIR");
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.vaciar();
+      }
+    });
   }
 
   vaciar(){

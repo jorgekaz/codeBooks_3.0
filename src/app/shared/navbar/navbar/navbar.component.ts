@@ -27,39 +27,29 @@ export class NavbarComponent {
   }
 
   home(){
-    if (localStorage.getItem('accessToken')){
-      this.router.navigateByUrl("/?id=" + localStorage.getItem('accessToken'))
-    } else{
-      this.router.navigateByUrl("/");
-    }
-    this.mensaje.emit("false");
+    this.router.navigate(['/']);
+    this.mensaje.emit("goHome");
   }
 
   register(){
-    this.router.navigateByUrl("/auth/register")
+    this.router.navigate(['auth', 'register']);
   }
 
   login(){
-    this.router.navigateByUrl("/auth/login")
-  }
-
-  perfil(){
-    //this.router.navigateByUrl("/personal-data/perfil")
-    this.router.navigateByUrl("/personal-data/perfil?id=" + localStorage.getItem('accessToken'));
+    this.router.navigate(['auth', 'login']);
   }
 
   logout(){
-    if (localStorage.getItem('accessToken')){
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('idUsuario');
-      localStorage.removeItem('userName');
-      this.isLogued = false;
-      this.mensaje.emit("logout");
-      this.router.navigateByUrl("/");
-    }
+    this.isLogued = false;
+    this.mensaje.emit("logout");
+    this.router.navigate(['/']);
+  }
+
+  perfil(){
+    this.router.navigate(['personal-data', 'perfil']);
   }
 
   verCarrito(){
-    this.router.navigateByUrl("/personal-data/historial?id=" + localStorage.getItem('accessToken'));
+    this.router.navigate(['personal-data', 'historial']);
   }
 }

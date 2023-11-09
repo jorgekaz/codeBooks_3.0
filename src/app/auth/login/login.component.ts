@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/core/Modelos';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/core/api-service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   email: string = '';
   password: string = '';
@@ -22,27 +23,23 @@ export class LoginComponent implements OnInit {
 
   formulario: FormGroup;
 
-  constructor(private formEdit: FormBuilder, private router: Router, private userService: UsersService, private snackBar: MatSnackBar ){
+  constructor(private formEdit: FormBuilder,
+              private router: Router,
+              private userService: UsersService,
+              private snackBar: MatSnackBar,
+              private authService: AuthService ){
     this.formulario = this.formEdit.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
   }
 
-  ngOnInit(): void {
-    if (localStorage.getItem('accessToken')){
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('idUsuario');
-    }
-  }
-
   login(){
     this.userService.userLoguin(this.formulario.get('email')?.value, this.formulario.get('password')?.value).then((data) =>{
-      // Si tengo una respuesta correcta, guardo el token en localStorage
-      localStorage.setItem('accessToken', data.accessToken);
-      localStorage.setItem('idUsuario', data.user.id);
-      localStorage.setItem('userName', data.user.nombre + " " + data.user.apellido);
-      this.router.navigateByUrl("/?id=" + data.accessToken);
+      // Si tengo una respuesta correcta guardo informacion en el servicio auth
+      this.authService.setToken(data.accessToken);
+      this.authService.setUser(data.user);
+      this.router.navigate(['/']);
     },
     (error) => {
       console.log(error.error);
@@ -50,7 +47,5 @@ export class LoginComponent implements OnInit {
           duration: 3000
         });
       });
-
   }
-
 }

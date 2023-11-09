@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Confirma Compra</h2>
+
+<div mat-dialog-content>
+  <mat-stepper linear="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Datos del destinatario</ng-template>
+        <mat-form-field>
+          <mat-label>Apellido y Nombre</mat-label>
+          <input matInput placeholder="Apellido y Nombre" formControlName="nombre" required>
+        </mat-form-field>
+        <div>
+          <br>
+          <hr>
+          <button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Direccion de envio.">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field>
+          <mat-label>Direccion</mat-label>
+          <input matInput formControlName="direccion" placeholder="Ej. Calle 57 Numero 2853"
+                 required>
+        </mat-form-field>
+        <div>
+          <br>
+          <hr>
+          <button mat-stroked-button color="primary" matStepperPrevious>Volver</button>
+          <button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Todo Listo!!</ng-template>
+      <p>La compra se enviara a {{user.nombre}} {{user.apellido}}</p>
+      <p>A la direccion {{user.direccion}}</p>
+      <hr>
+      <p>Si los datos ingresados son correctos, presione Confirmar</p>
+      <div>
+        <br>
+        <hr>
+        <button mat-stroked-button color="primary" matStepperPrevious>Volver</button>
+        <button mat-stroked-button color="primary" (click)="confirmarVenta()">Confirmar</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+  <div mat-dialog-actions>
+    <br><br>
+    <button mat-stroked-button color="primary" (click)="closeDialog()" class="custom-button" >Cancelar</button>
+  </div>
+</div>

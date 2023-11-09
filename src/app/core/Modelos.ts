@@ -1,20 +1,22 @@
 import { IBook, ICarrito, IUser } from "./Interfaces";
 
 export class User implements IUser {
-  nombre: string | null;
-  apellido: string | null;
-  direccion: string | null;
-  telefono: string | null;
-  email: string | null;
-  password: string | null;
+  id: number | null = null;
+  nombre: string = '';
+  apellido: string = '';
+  direccion: string = '';
+  telefono: string = '';
+  email: string = '';
+  password: string = '';
 
-  constructor(nombre: string, apellido: string, direccion: string, telefono: string, email: string, password: string) {
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.direccion = direccion;
-    this.telefono = telefono;
-    this.email = email;
-    this.password = password;
+  constructor(user?: any) {
+    this.id = user == undefined ? '' : user.id;
+    this.nombre = user == undefined ? '' : user.nombre;
+    this.apellido = user == undefined ? '' : user.apellido;
+    this.direccion = user == undefined ? '' : user.direccion;
+    this.telefono = user == undefined ? '' : user.telefono;
+    this.email = user == undefined ? '' : user.email;
+    this.password = user == undefined ? '' : user.password;
   }
 
 }
