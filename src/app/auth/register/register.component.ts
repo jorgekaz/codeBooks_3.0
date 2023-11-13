@@ -42,8 +42,14 @@ export class RegisterComponent {
   }
 
   register() {
-    const user = new User(this.formulario.value);
-
+    // Clonar los valores del formulario para no modificar el formulario original
+    const formValues = { ...this.formulario.value };
+  
+    // Eliminar el campo confirmPassword del objeto
+    delete formValues.confirmPassword;
+  
+    const user = new User(formValues);
+  
     this.userService.setUser(user).then((data) => {
       this.authService.setToken(data.accessToken);
       this.authService.setUser(data.user);
@@ -51,13 +57,13 @@ export class RegisterComponent {
         duration: 3000
       });
       this.router.navigate(['/']);
-
     }).catch((error) => {
       this.snackBar.open("Hubo un error al registrarse", "",{
         duration: 2000
       });
     });
   }
+  
 
   // Validacion de passwords iguales
   passwordsIguales() : ValidatorFn {

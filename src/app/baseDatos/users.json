@@ -7,8 +7,7 @@
       "apellido": "Olivera",
       "direccion": "529-3651",
       "telefono": "2262637774",
-      "id": 1,
-      "confirmPassword": "1234"
+      "id": 1
     },
     {
       "email": "jorgekaz@hotmail.com",
@@ -17,8 +16,7 @@
       "apellido": "Karp",
       "direccion": "514458",
       "telefono": "2262648748",
-      "id": 2,
-      "confirmPassword": "123456"
+      "id": 2
     },
     {
       "email": "juang@live.com.ar",
@@ -27,32 +25,28 @@
       "apellido": "Genova",
       "direccion": "Av. siempre viva 1234",
       "telefono": "02262475384",
-      "id": 3,
-      "confirmPassword": "123123"
+      "id": 3
+    },
+    {
+      "email": "pepito@utn.com",
+      "password": "$2a$10$J4JhzvBqg.uFB7r4QPgKuu78SbLhzNYGe1jRxROTlR/zO96eXXC.O",
+      "nombre": "Pepito",
+      "apellido": "SinConfirm",
+      "direccion": "CalleVerdadera",
+      "telefono": "2262736478",
+      "id": 4
+    },
+    {
+      "email": "pepitoDos@utn.com",
+      "password": "$2a$10$yxz5yqPm2SscX333Rbsr.uIYJCATSO4pmycTEijhEg8DzdQ3xYY.q",
+      "nombre": "PepitoDos",
+      "apellido": "SinConfirm",
+      "direccion": "CalleVerdadera",
+      "telefono": "2262736478",
+      "id": 5
     }
   ],
   "carritos": [
-    {
-      "fechaCompra": "2023-10-31T22:18:28.942Z",
-      "idUsuario": 2,
-      "idBooks": [
-        4,
-        6
-      ],
-      "total": 448,
-      "id": 1
-    },
-    {
-      "fechaCompra": "2023-11-03T21:18:56.982Z",
-      "idUsuario": 2,
-      "idBooks": [
-        3,
-        4,
-        2
-      ],
-      "total": 1872,
-      "id": 2
-    },
     {
       "fechaCompra": "9/11/2023, 8:10:06",
       "idUsuario": 1,
@@ -122,6 +116,50 @@
       ],
       "total": 209,
       "id": 9
+    },
+    {
+      "fechaCompra": "11/13/2023, 7:45:49 PM",
+      "idUsuario": 2,
+      "idBooks": [
+        3,
+        2
+      ],
+      "total": 1712,
+      "id": 10
+    },
+    {
+      "fechaCompra": "11/13/2023, 7:49:11 PM",
+      "idUsuario": 2,
+      "idBooks": [
+        7,
+        2,
+        3,
+        5
+      ],
+      "total": 2272,
+      "id": 11
+    },
+    {
+      "fechaCompra": "11/13/2023, 7:53:20 PM",
+      "idUsuario": 2,
+      "idBooks": [
+        5,
+        3,
+        4,
+        2
+      ],
+      "total": 2048,
+      "id": 12
+    },
+    {
+      "fechaCompra": "11/13/2023, 7:56:17 PM",
+      "idUsuario": 1,
+      "idBooks": [
+        2,
+        3
+      ],
+      "total": 1712,
+      "id": 13
     }
   ]
 }
