@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Confirma Compra</h2>
+<h2 mat-dialog-title>Confirmar Datos de Envío</h2>
 
 <div mat-dialog-content>
   <mat-stepper linear="true" #stepper>
@@ -12,7 +12,7 @@
         <div>
           <br>
           <hr>
-          <button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
+          <button type="button" mat-stroked-button color="primary" matStepperNext>Siguiente</button>
         </div>
       </form>
     </mat-step>
@@ -20,14 +20,13 @@
       <form [formGroup]="secondFormGroup">
         <mat-form-field>
           <mat-label>Direccion</mat-label>
-          <input matInput formControlName="direccion" placeholder="Ej. Calle 57 Numero 2853"
-                 required>
+          <input matInput formControlName="direccion" placeholder="Ej. Calle 57 Numero 2853" required>
         </mat-form-field>
         <div>
           <br>
           <hr>
-          <button mat-stroked-button color="primary" matStepperPrevious>Volver</button>
-          <button mat-stroked-button color="primary" matStepperNext>Siguiente</button>
+          <button type="button" mat-stroked-button color="primary" matStepperPrevious>Volver</button>
+          <button type="button" mat-stroked-button color="primary" matStepperNext>Siguiente</button>
         </div>
       </form>
     </mat-step>

@@ -3,7 +3,7 @@
 <!-- Detalle de la Compra -->
 <div class="store">
   <section class="section-container-books">
-    <h3>Historial de Compras</h3>
+    <h1>Historial de Compras</h1>
     <hr>
     <diV *ngFor="let carrito of carritos" class="carrito-card">
       <mat-card class="example-card">
@@ -38,7 +38,7 @@
     </section>
     <hr>
     <div class="shopping-cart">
-      <mat-card class="card" *ngFor="let book of books" cdkDrag>
+      <mat-card class="card" *ngFor="let book of books">
         <mat-card-header>
           <mat-card-title-group>
             <mat-card-title>{{ book.titulo }}</mat-card-title>
